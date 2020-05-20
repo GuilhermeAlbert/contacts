@@ -19,3 +19,7 @@ Route::get('/sign-up', 'WebsiteController@signUp');
 
 // Dashboard routes
 Route::get('/dashboard', 'DashboardController@list');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
