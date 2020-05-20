@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WebsiteController@index');
+Route::get('/sign-in', 'WebsiteController@signIn');
+Route::get('/sign-up', 'WebsiteController@signUp');
+
+// Dashboard routes
+Route::get('/dashboard', 'DashboardController@list');

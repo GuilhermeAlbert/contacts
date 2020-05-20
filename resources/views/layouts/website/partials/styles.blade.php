@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="{{ asset('website/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/jquery-ui.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/jquery.fancybox.min.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/bootstrap-datepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('website/fonts/flaticon/font/flaticon.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/aos.css') }}">
+<link rel="stylesheet" href="{{ asset('website/css/style.css') }}">
