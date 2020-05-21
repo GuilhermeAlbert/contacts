@@ -43,9 +43,10 @@
             <!-- ============================================================== -->
             <div id="page-wrapper">
                 <div class="container-fluid">
+                    @section('breadcrumbs')
+                    @show
                     @section('content')
                     @show
-
                 </div>
                 <!-- /.container-fluid -->
                 @include('layouts.webapp.partials.footer')

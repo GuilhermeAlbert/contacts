@@ -13,7 +13,7 @@
                         <h1>Make your contacts safe.</h1>
                         <p class="mb-5">Save contacts and manage it right here.</p>
                         <div>
-                            <a href="#" class="btn btn-primary mr-2 mb-2">Get Started</a>
+                            <a href="/sign-in" class="btn btn-primary mr-2 mb-2">Get Started</a>
                         </div>
                     </div>
                 </div>

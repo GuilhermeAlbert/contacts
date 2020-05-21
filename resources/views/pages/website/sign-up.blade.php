@@ -14,15 +14,69 @@
             </div>
             <div class="col-lg-5 ml-auto pl-lg-5">
                 <h2 class="text-black mb-4 h3 font-weight-bold">Our Mission</h2>
-                <p class="mb-4">Eos cumque optio dolores excepturi rerum temporibus magni recusandae eveniet, totam omnis consectetur maxime quibusdam expedita dolorem dolor nobis dicta labore quaerat esse magnam unde, aperiam delectus! At maiores, itaque.</p>
-                <ul class="ul-check mb-5 list-unstyled success">
-                    <li>Laborum enim quasi at modi</li>
-                    <li>Ad at tempore</li>
-                    <li>Labore quaerat esse</li>
-                </ul>
-                <p>
-                    <button type="submit" class="btn btn-primary">Learn More</button>
-                </p>
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Password confirmation">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+
+                </form>
+                <div>
+                    <p>
+                        <a href="/sign-in">
+                            I already have an account
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -17,9 +17,11 @@ Route::get('/', 'WebsiteController@index');
 Route::get('/sign-in', 'WebsiteController@signIn');
 Route::get('/sign-up', 'WebsiteController@signUp');
 
-// Dashboard routes
-Route::get('/dashboard', 'DashboardController@list');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', 'DashboardController@list')->name('dashboard');
+    Route::get('/contacts', 'ContactController@list')->name('contacts');
+    Route::get('/profile', 'UserController@list')->name('profile');
+});

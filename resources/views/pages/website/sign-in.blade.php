@@ -50,8 +50,8 @@
                 </form>
                 <div>
                     <p>
-                        <a href="sign-up">
-                            I already have an account
+                        <a href="/sign-up">
+                            I don't have an account
                         </a>
                     </p>
                 </div>
