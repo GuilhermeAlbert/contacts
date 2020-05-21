@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website/images/notebook.png') }}">
+    <title>Contacts</title>
 
     @include('layouts.webapp.partials.styles')
     @include('layouts.webapp.partials.ie')

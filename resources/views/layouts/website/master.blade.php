@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>imagine &mdash; Onepage Template by Colorlib</title>
+    <title>Contacts</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="codepixer">
-    <meta name="description" content="">
+    <meta name="author" content="Guilherme Albert">
+    <meta name="description" content="Contacts from Guilherme Albert and powered by Trebla Labs.">
     <meta name="keywords" content="">
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('website/images/notebook.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('layouts.website.partials.fonts')
