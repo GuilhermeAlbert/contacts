@@ -56,7 +56,7 @@ class Update extends FormRequest
         return [
             'first_name' => 'first name',
             'email'      => 'email address',
-            'email'      => 'phone number',
+            'phone'      => 'phone number',
             'user_id'    => 'user identification',
         ];
     }

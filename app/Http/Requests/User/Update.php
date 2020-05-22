@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace App\Http\Requests\User;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Utils\{HttpStatusCodes, Strings};
 
-class Store extends FormRequest
+class Update extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +28,13 @@ class Store extends FormRequest
      */
     protected function prepareForValidation()
     {
-        // Characters to be removed
-        $characters = ["(", ")", "+", " ", "-"];
-
-        // Remove some characters from phone
-        if ($this->phone) $this->phone = Strings::removeCharacters($characters, $this->phone);
+        // Gets the user from route
+        $userId = $this->route('user');
+        $user = User::find($userId);
 
         $this->merge([
-            'phone'   => $this->phone,
-            'user_id' => $this->user()->id,
+            "password" => Hash::make($this->password),
+            "user"     => $user
         ]);
     }
 
@@ -46,10 +46,9 @@ class Store extends FormRequest
     public function attributes()
     {
         return [
-            'first_name' => 'first name',
+            'name'       => 'full name',
             'email'      => 'email address',
-            'phone'      => 'phone number',
-            'user_id'    => 'user identification',
+            'password'   => 'user password',
         ];
     }
 
@@ -61,10 +60,10 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            "first_name" => ["required", "string", "max:255"],
-            "email"      => ["required", "email", "string"],
-            "phone"      => ["required", "string"],
-            "user_id"    => ["required", "integer"]
+            "name"      => ["required", "string", "max:255"],
+            "email"     => ["required", "email", "string"],
+            "password"  => ["required", "string"],
+            "user"      => ["required", "json"],
         ];
     }
 
@@ -76,7 +75,7 @@ class Store extends FormRequest
     public function messages()
     {
         return [
-            // 
+            "user.required" => ":attribute not found."
         ];
     }
 
@@ -90,13 +89,14 @@ class Store extends FormRequest
     {
         $validator->after(function ($validator) {
             if (!$validator->errors()->all()) {
+
+                $this->body = $this->validated();
+                $this->inputs = [];
+
+                foreach ($this->body as $key => $value) $this->inputs[$key] = $value;
+
                 $this->merge([
-                    'inputs' => [
-                        'first_name' => $this->first_name,
-                        'email'      => $this->email,
-                        'phone'      => $this->phone,
-                        'user_id'    => $this->user_id
-                    ],
+                    'inputs' => $this->inputs,
                 ]);
             }
         });

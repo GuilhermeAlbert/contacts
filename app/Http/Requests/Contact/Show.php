@@ -23,6 +23,21 @@ class Show extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $contactId = $this->route('contact');
+        $contact = Contact::find($contactId);
+
+        $this->merge([
+            "contact" => $contact
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -44,21 +59,6 @@ class Show extends FormRequest
         return [
             "contact.required" => ":attribute not found."
         ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        $contactId = $this->route('contact');
-        $contact = Contact::find($contactId);
-
-        $this->merge([
-            "contact" => $contact
-        ]);
     }
 
     /**

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Utils\{HttpStatusCodes, Strings};
+use Illuminate\Support\Facades\Hash;
 
 class Store extends FormRequest
 {
@@ -26,15 +27,8 @@ class Store extends FormRequest
      */
     protected function prepareForValidation()
     {
-        // Characters to be removed
-        $characters = ["(", ")", "+", " ", "-"];
-
-        // Remove some characters from phone
-        if ($this->phone) $this->phone = Strings::removeCharacters($characters, $this->phone);
-
         $this->merge([
-            'phone'   => $this->phone,
-            'user_id' => $this->user()->id,
+            "password" => Hash::make($this->password),
         ]);
     }
 
@@ -46,10 +40,9 @@ class Store extends FormRequest
     public function attributes()
     {
         return [
-            'first_name' => 'first name',
+            'name'       => 'full name',
             'email'      => 'email address',
-            'phone'      => 'phone number',
-            'user_id'    => 'user identification',
+            'password'   => 'user password',
         ];
     }
 
@@ -61,10 +54,9 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            "first_name" => ["required", "string", "max:255"],
-            "email"      => ["required", "email", "string"],
-            "phone"      => ["required", "string"],
-            "user_id"    => ["required", "integer"]
+            "name"      => ["required", "string", "max:255"],
+            "email"     => ["required", "email", "string"],
+            "password"  => ["required", "string"],
         ];
     }
 
@@ -92,10 +84,9 @@ class Store extends FormRequest
             if (!$validator->errors()->all()) {
                 $this->merge([
                     'inputs' => [
-                        'first_name' => $this->first_name,
-                        'email'      => $this->email,
-                        'phone'      => $this->phone,
-                        'user_id'    => $this->user_id
+                        'name'      => $this->name,
+                        'email'     => $this->email,
+                        'password'  => $this->password,
                     ],
                 ]);
             }

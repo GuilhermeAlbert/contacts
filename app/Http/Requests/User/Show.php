@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace App\Http\Requests\User;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Utils\HttpStatusCodes;
 
-class Index extends FormRequest
+class Show extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +27,11 @@ class Index extends FormRequest
      */
     protected function prepareForValidation()
     {
+        $contactId = $this->route('user');
+        $user = User::find($contactId);
+
         $this->merge([
-            // 
+            "user" => $user
         ]);
     }
 
@@ -39,7 +43,7 @@ class Index extends FormRequest
     public function rules()
     {
         return [
-            // 
+            "user" => ["required", "json"]
         ];
     }
 
@@ -51,7 +55,7 @@ class Index extends FormRequest
     public function messages()
     {
         return [
-            // 
+            "user.required" => ":attribute not found."
         ];
     }
 

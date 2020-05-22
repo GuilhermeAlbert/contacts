@@ -11,14 +11,18 @@ use App\Http\Requests\Contact\{
     Update,
     Destroy
 };
-use App\Http\Resources\DefaultErrorResource;
-use App\Http\Resources\DefaultResource;
+use App\Http\Resources\{DefaultErrorResource, DefaultResource};
 use App\Utils\HttpStatusCodes;
 
 class ContactController extends Controller
 {
+    // Protected items context
     protected $model;
 
+    /**
+     * Constructor method
+     * @param ContactRepository $model
+     */
     public function __construct(ContactRepository $model)
     {
         $this->model = $model;
