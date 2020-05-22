@@ -11,6 +11,9 @@
                 <a href="{{ route('contacts') }}" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i>Contacts</a>
             </li>
             <li>
+                <a href="{{ route('trash') }}" class="waves-effect"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>Trash</a>
+            </li>
+            <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>{{ __('Logout') }}
                 </a>

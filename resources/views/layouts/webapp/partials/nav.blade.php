@@ -2,15 +2,24 @@
     <div class="navbar-header">
         <div class="top-left-part">
             <!-- Logo -->
-            <a class="logo" href="dashboard.html">
-                <!-- Logo icon image, you can use font-icon also --><b>
-                    <!--This is dark logo icon--><img src="{{ asset('webapp/plugins/images/admin-logo.png') }}" alt="home" class="dark-logo" />
-                    <!--This is light logo icon--><img src="{{ asset('webapp/plugins/images/admin-logo-dark.png') }}" alt="home" class="light-logo" />
+            <a class="logo" href="{{ route('dashboard') }}">
+                <!-- Logo icon image, you can use font-icon also -->
+                <b>
+                    <!--This is dark logo icon-->
+                    <img src="{{ asset('website/images/notebook.png') }}" alt="home" class="dark-logo" width="33px" />
+
+                    <!--This is light logo icon-->
+                    <img src="{{ asset('website/images/notebook.png') }}" alt="home" class="light-logo" width="33px" />
                 </b>
-                <!-- Logo text image you can use text also --><span class="hidden-xs">
-                    <!--This is dark logo text--><img src="{{ asset('webapp/plugins/images/admin-text.png') }}" alt="home" class="dark-logo" />
-                    <!--This is light logo text--><img src="{{ asset('webapp/plugins/images/admin-text-dark.png') }}" alt="home" class="light-logo" />
-                </span> </a>
+                <!-- Logo text image you can use text also -->
+                <span class="hidden-xs">
+                    <!--This is dark logo text-->
+                    <img src="{{ asset('website/images/contacts-brand.png') }}" alt="home" class="dark-logo" />
+
+                    <!--This is light logo text-->
+                    <img src="{{ asset('website/images/contacts-brand.png') }}" alt="home" class="light-logo" width="133px" />
+                </span>
+            </a>
         </div>
         <!-- /Logo -->
         <ul class="nav navbar-top-links navbar-right pull-right">

@@ -7,9 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-Software Engineer test for: https://launchcart.com/jobs/
-
-Create a simple SaaS contact manager.
+A simple SaaS contact manager.
 
 The platform must be able to register and login users.
 Each member can add multiple contacts.

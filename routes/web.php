@@ -18,11 +18,11 @@ Route::get('/sign-in', 'WebsiteController@signIn');
 Route::get('/sign-up', 'WebsiteController@signUp');
 Route::get('/home', 'HomeController@index');
 
-
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'DashboardController@list')->name('dashboard');
     Route::get('/contacts', 'ContactController@list')->name('contacts');
     Route::get('/profile', 'UserController@list')->name('profile');
+    Route::get('/trash', 'TrashController@list')->name('trash');
 });
