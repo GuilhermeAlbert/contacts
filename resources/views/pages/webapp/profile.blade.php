@@ -21,6 +21,7 @@
     <div class="col-md-12">
         <div class="white-box">
             <h3 class="box-title">Profile</h3>
+            <profile-component :user="{{ $user }}"></profile-component>
         </div>
     </div>
 </div>

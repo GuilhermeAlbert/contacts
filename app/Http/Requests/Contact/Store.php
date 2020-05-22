@@ -33,7 +33,8 @@ class Store extends FormRequest
         if ($this->phone) $this->phone = Strings::removeCharacters($characters, $this->phone);
 
         $this->merge([
-            'phone' => $this->phone,
+            'phone'   => $this->phone,
+            'user_id' => $this->user()->id,
         ]);
     }
 

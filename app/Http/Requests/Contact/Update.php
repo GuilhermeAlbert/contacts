@@ -17,7 +17,9 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $contact = Contact::find($this->route('contact'));
+
+        return $contact && $this->user()->can('update', $contact);
     }
 
     /**
@@ -39,7 +41,8 @@ class Update extends FormRequest
 
         $this->merge([
             'phone'   => $this->phone,
-            'contact' => $contact
+            'contact' => $contact,
+            'user_id' => $this->user()->id,
         ]);
     }
 

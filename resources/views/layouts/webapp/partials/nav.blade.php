@@ -28,7 +28,9 @@
             </li>
             <li>
                 <a class="profile-pic" href="{{ route('profile') }}">
-                    <b class="hidden-xs">Steave</b>
+                    <b class="hidden-xs">
+                        {{ Auth::user()->name }}
+                    </b>
                 </a>
             </li>
         </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,6 +14,8 @@ class UserController extends Controller
      */
     public function list(Request $request)
     {
-        return view('pages.webapp.profile', []);
+        return view('pages.webapp.profile', [
+            'user' => Auth::user()
+        ]);
     }
 }

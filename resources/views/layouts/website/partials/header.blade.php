@@ -16,7 +16,11 @@
 
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
                         <li><a href="/" class="nav-link">Home</a></li>
-                        <li><a href="/sign-in" class="nav-link">Sign in</a></li>
+                        @guest
+                        <li><a href="{{ route('sign-in') }}" class="nav-link">Sign in</a></li>
+                        @else
+                        <li><a href="{{ route('profile') }}" class="nav-link">{{ Auth::user()->name }}</a></li>
+                        @endguest
                     </ul>
                 </nav>
             </div>

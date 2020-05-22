@@ -17,7 +17,9 @@ class Show extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $contact = Contact::find($this->route('contact'));
+
+        return $contact && $this->user()->can('view', $contact);
     }
 
     /**
