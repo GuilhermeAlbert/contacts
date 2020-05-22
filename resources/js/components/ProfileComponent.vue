@@ -1,6 +1,6 @@
 <template>
     <div class="white-box">
-        <form class="form-horizontal form-material">
+        <div class="form-horizontal form-material">
             <div class="form-group">
                 <label class="col-md-12">Full Name</label>
                 <div class="col-md-12">
@@ -43,7 +43,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
