@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website/images/notebook.png') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Contacts</title>
 
     @include('layouts.webapp.partials.styles')
