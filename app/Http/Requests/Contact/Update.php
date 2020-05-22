@@ -54,6 +54,7 @@ class Update extends FormRequest
             'first_name' => 'first name',
             'email'      => 'email address',
             'email'      => 'phone number',
+            'user_id'    => 'user identification',
         ];
     }
 
@@ -68,7 +69,8 @@ class Update extends FormRequest
             "first_name" => ["required", "string", "max:255"],
             "email"      => ["required", "email", "string"],
             "phone"      => ["required", "string"],
-            "contact"    => ["required", "json"]
+            "contact"    => ["required", "json"],
+            "user_id"    => ["required", "integer"]
         ];
     }
 

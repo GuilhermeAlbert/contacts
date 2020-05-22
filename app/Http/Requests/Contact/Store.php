@@ -48,6 +48,7 @@ class Store extends FormRequest
             'first_name' => 'first name',
             'email'      => 'email address',
             'email'      => 'phone number',
+            'user_id'    => 'user identification',
         ];
     }
 
@@ -62,6 +63,7 @@ class Store extends FormRequest
             "first_name" => ["required", "string", "max:255"],
             "email"      => ["required", "email", "string"],
             "phone"      => ["required", "string"],
+            "user_id"    => ["required", "integer"]
         ];
     }
 
@@ -92,6 +94,7 @@ class Store extends FormRequest
                         'first_name' => $this->first_name,
                         'email'      => $this->email,
                         'phone'      => $this->phone,
+                        'user_id'    => $this->user_id
                     ],
                 ]);
             }
