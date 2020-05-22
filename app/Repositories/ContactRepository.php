@@ -20,13 +20,4 @@ class ContactRepository extends BaseRepository implements ContactInterface
     {
         $this->model = $model;
     }
-
-    /**
-     * Get all contacts
-     * @return mixed $objects
-     */
-    public function all()
-    {
-        return $this->model->all();
-    }
 }

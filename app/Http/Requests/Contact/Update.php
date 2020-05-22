@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests\Contact;
 
+use App\Contact;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Utils\HttpStatusCodes;
+use App\Utils\{HttpStatusCodes, Strings};
 
 class Update extends FormRequest
 {
@@ -20,6 +21,43 @@ class Update extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        // Gets the contact from route
+        $contactId = $this->route('contact');
+        $contact = Contact::find($contactId);
+
+        // Characters to be removed
+        $characters = ["(", ")", "+", " ", "-"];
+
+        // Remove some characters from phone
+        if ($this->phone) $this->phone = Strings::removeCharacters($characters, $this->phone);
+
+        $this->merge([
+            'phone'   => $this->phone,
+            'contact' => $contact
+        ]);
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'first_name' => 'first name',
+            'email'      => 'email address',
+            'email'      => 'phone number',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -27,7 +65,10 @@ class Update extends FormRequest
     public function rules()
     {
         return [
-            // 
+            "first_name" => ["required", "string", "max:255"],
+            "email"      => ["required", "email", "string"],
+            "phone"      => ["required", "string"],
+            "contact"    => ["required", "json"]
         ];
     }
 
@@ -39,20 +80,31 @@ class Update extends FormRequest
     public function messages()
     {
         return [
-            // 
+            "contact.required" => ":attribute not found."
         ];
     }
 
     /**
-     * Prepare the data for validation.
+     * Configure the validator instance.
      *
+     * @param  \Illuminate\Validation\Validator  $validator
      * @return void
      */
-    protected function prepareForValidation()
+    public function withValidator($validator)
     {
-        $this->merge([
-            // 
-        ]);
+        $validator->after(function ($validator) {
+            if (!$validator->errors()->all()) {
+
+                $this->body = $this->validated();
+                $this->inputs = [];
+
+                foreach ($this->body as $key => $value) $this->inputs[$key] = $value;
+
+                $this->merge([
+                    'inputs' => $this->inputs,
+                ]);
+            }
+        });
     }
 
     /**

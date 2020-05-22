@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Contact;
 
+use App\Contact;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -27,7 +28,7 @@ class Show extends FormRequest
     public function rules()
     {
         return [
-            // 
+            "contact" => ["required", "json"]
         ];
     }
 
@@ -39,7 +40,7 @@ class Show extends FormRequest
     public function messages()
     {
         return [
-            // 
+            "contact.required" => ":attribute not found."
         ];
     }
 
@@ -50,8 +51,11 @@ class Show extends FormRequest
      */
     protected function prepareForValidation()
     {
+        $contactId = $this->route('contact');
+        $contact = Contact::find($contactId);
+
         $this->merge([
-            // 
+            "contact" => $contact
         ]);
     }
 

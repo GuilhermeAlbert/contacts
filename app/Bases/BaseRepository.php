@@ -19,6 +19,14 @@ abstract class BaseRepository implements BaseInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function all()
+    {
+        return $this->model->all();
+    }
+
+    /**
      * @param array $attributes
      * @return mixed
      */
@@ -34,7 +42,12 @@ abstract class BaseRepository implements BaseInterface
      */
     public function update(array $attributes, Model $object)
     {
-        return $object->update($attributes);
+        $object->update($attributes);
+
+        if ($object)
+            return $object;
+        else
+            return null;
     }
 
     /**

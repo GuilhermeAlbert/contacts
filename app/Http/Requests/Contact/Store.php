@@ -5,7 +5,7 @@ namespace App\Http\Requests\Contact;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Utils\HttpStatusCodes;
+use App\Utils\{HttpStatusCodes, Strings};
 
 class Store extends FormRequest
 {
@@ -20,6 +20,38 @@ class Store extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        // Characters to be removed
+        $characters = ["(", ")", "+", " ", "-"];
+
+        // Remove some characters from phone
+        if ($this->phone) $this->phone = Strings::removeCharacters($characters, $this->phone);
+
+        $this->merge([
+            'phone' => $this->phone,
+        ]);
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'first_name' => 'first name',
+            'email'      => 'email address',
+            'email'      => 'phone number',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -27,7 +59,9 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            // 
+            "first_name" => ["required", "string", "max:255"],
+            "email"      => ["required", "email", "string"],
+            "phone"      => ["required", "string"],
         ];
     }
 
@@ -44,15 +78,24 @@ class Store extends FormRequest
     }
 
     /**
-     * Prepare the data for validation.
+     * Configure the validator instance.
      *
+     * @param  \Illuminate\Validation\Validator  $validator
      * @return void
      */
-    protected function prepareForValidation()
+    public function withValidator($validator)
     {
-        $this->merge([
-            // 
-        ]);
+        $validator->after(function ($validator) {
+            if (!$validator->errors()->all()) {
+                $this->merge([
+                    'inputs' => [
+                        'first_name' => $this->first_name,
+                        'email'      => $this->email,
+                        'phone'      => $this->phone,
+                    ],
+                ]);
+            }
+        });
     }
 
     /**

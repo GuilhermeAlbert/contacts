@@ -11,6 +11,7 @@ use App\Http\Requests\Contact\{
     Update,
     Destroy
 };
+use App\Http\Resources\DefaultErrorResource;
 use App\Http\Resources\DefaultResource;
 use App\Utils\HttpStatusCodes;
 
@@ -63,11 +64,11 @@ class ContactController extends Controller
     {
         try {
 
-            $data = $this->model->all();
+            $object = $this->model->all();
 
-            return new DefaultResource($data);
+            return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultResource($error->getMessage());
+            return new DefaultErrorResource(['errors' => $error->getMessage()]);
         }
     }
 
@@ -81,11 +82,11 @@ class ContactController extends Controller
     {
         try {
 
-            $data = $request->contact;
+            $object = $request->contact;
 
-            return new DefaultResource($data);
+            return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultResource($error->getMessage());
+            return new DefaultErrorResource(['errors' => $error->getMessage()]);
         }
     }
 
@@ -99,11 +100,11 @@ class ContactController extends Controller
     {
         try {
 
-            $data = $this->model->create($request->inputs);
+            $object = $this->model->create($request->inputs);
 
-            return (new DefaultResource($data))->response()->setStatusCode(HttpStatusCodes::CREATED);
+            return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::CREATED);
         } catch (\Exception $error) {
-            return new DefaultResource($error->getMessage());
+            return new DefaultErrorResource(['errors' => $error->getMessage()]);
         }
     }
 
@@ -117,11 +118,11 @@ class ContactController extends Controller
     {
         try {
 
-            $data = $this->model->update($request->contact, $request->inputs);
+            $object = $this->model->update($request->inputs, $request->contact);
 
-            return new DefaultResource($data);
+            return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultResource($error->getMessage());
+            return new DefaultErrorResource(['errors' => $error->getMessage()]);
         }
     }
 
@@ -135,11 +136,11 @@ class ContactController extends Controller
     {
         try {
 
-            $data = $this->model->delete($request->contact);
+            $this->model->delete($request->contact);
 
-            return (new DefaultResource($data))->response()->setStatusCode(HttpStatusCodes::NO_CONTENT);
+            return (new DefaultResource([]))->response()->setStatusCode(HttpStatusCodes::NO_CONTENT);
         } catch (\Exception $error) {
-            return new DefaultResource($error->getMessage());
+            return new DefaultErrorResource(['errors' => $error->getMessage()]);
         }
     }
 }
