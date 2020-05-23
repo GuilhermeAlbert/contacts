@@ -27,6 +27,15 @@ abstract class BaseRepository implements BaseInterface
     }
 
     /**
+     * @param int input
+     * @return mixed
+     */
+    public function find($input)
+    {
+        return $this->model->find($input);
+    }
+
+    /**
      * @param array $attributes
      * @return mixed
      */

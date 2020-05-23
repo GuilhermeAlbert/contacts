@@ -22,15 +22,6 @@ class ContactRepository extends BaseRepository implements ContactInterface
     }
 
     /**
-     * Get the some specific contact
-     * @param int id
-     */
-    public function find($id)
-    {
-        return $this->model->find($id);
-    }
-
-    /**
      * Get all contacts by user
      * @param int $userId
      * @return Collection

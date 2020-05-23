@@ -17,12 +17,17 @@ use Illuminate\Support\Facades\Route;
  * Rotas com middleware
  */
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('auth/logout', 'AuthController@logout');
+    Route::get('auth/user', 'AuthController@user');
+
+    Route::resource('users', 'UserController');
+    Route::resource('contacts', 'ContactController');
 });
 
 /**
  * Routes without middleware
  */
 Route::group([], function () {
-    Route::resource('users', 'UserController');
-    Route::resource('contacts', 'ContactController');
+    Route::post('auth/login', 'AuthController@login');
+    Route::post('auth/signup', 'AuthController@signup');
 });
