@@ -1,5 +1,11 @@
 <template>
     <div class="white-box">
+        <loading
+            :active.sync="isLoading"
+            :is-full-page="fullPage"
+            :loader="loader"
+            :color="color"
+        ></loading>
         <div class="form-horizontal form-material">
             <div class="form-group">
                 <label class="col-md-12">Full Name</label>
@@ -76,9 +82,9 @@ export default {
 
             axios
                 .patch(`/api/users/${this.user.id}`, {
-                    name: this.user.name,
-                    email: this.user.email,
-                    password: this.user.password
+                    name: this.model.name,
+                    email: this.model.email,
+                    password: this.model.password
                 })
                 .then(response => {
                     let data = response.data;
@@ -94,10 +100,22 @@ export default {
                 });
         },
         showErrorToast() {
-            //
+            Vue.$toast.open({
+                message: "The data wasn't changed.",
+                type: "error",
+                duration: 3000,
+                position: "top",
+                queue: true
+            });
         },
         showSuccessToast() {
-            //
+            Vue.$toast.open({
+                message: "The data was changed.",
+                type: "success",
+                duration: 3000,
+                position: "top",
+                queue: true
+            });
         }
     },
     created() {

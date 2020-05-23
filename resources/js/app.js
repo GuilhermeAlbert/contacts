@@ -8,6 +8,15 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
+
+Vue.use(Loading);
+Vue.use(VueToast);
+Vue.component("loading", Loading);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

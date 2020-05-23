@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "node-sass": "^4.14.1"
+        "node-sass": "^4.14.1",
+        "vue-loading-overlay": "^3.3.2",
+        "vue-toast-notification": "^0.4.0",
+        "vuejs-datatable": "^2.0.0-alpha.7"
     }
 }
