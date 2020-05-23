@@ -24,6 +24,7 @@
         </div>
     </div>
 </div>
+<edit-contact-component :contact="{{ $contact }}"></edit-contact-component>
 @endsection
 
 @section('javascripts')

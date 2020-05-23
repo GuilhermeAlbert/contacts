@@ -47,9 +47,11 @@ class ContactController extends Controller
      * @param Request request
      * @return view
      */
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-        return view('pages.webapp.contacts.edit', []);
+        return view('pages.webapp.contacts.edit', [
+            "contact" => $this->model->find($id),
+        ]);
     }
 
     /**

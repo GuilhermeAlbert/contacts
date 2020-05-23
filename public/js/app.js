@@ -2222,9 +2222,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loader: "dots",
       color: "#007bff",
       model: {
-        name: "",
+        first_name: "",
         email: "",
-        password: ""
+        phone: ""
       }
     };
   },
@@ -2253,13 +2253,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       console.log("Component is updating.");
       this.isLoading = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch("/api/users/".concat(this.user.id), {
-        name: this.model.name,
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/contacts/", {
+        first_name: this.model.first_name,
         email: this.model.email,
-        password: this.model.password
+        phone: this.model.phone
       }).then(function (response) {
         var data = response.data;
         _this2.isLoading = false;
+        window.location.href = "/contacts";
 
         _this2.showSuccessToast();
       })["catch"](function (error) {
@@ -2289,9 +2290,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     }
   },
-  created: function created() {
-    this.model.name = this.user.name;
-    this.model.email = this.user.email;
+  created: function created() {//
   }
 });
 
@@ -2373,7 +2372,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["user", "title", "description"],
+  props: ["contact"],
   data: function data() {
     return {
       isLoading: false,
@@ -2381,9 +2380,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       loader: "dots",
       color: "#007bff",
       model: {
-        name: "",
+        first_name: "",
         email: "",
-        password: ""
+        phone: ""
       }
     };
   },
@@ -2412,10 +2411,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       console.log("Component is updating.");
       this.isLoading = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch("/api/users/".concat(this.user.id), {
-        name: this.model.name,
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.patch("/api/contacts/".concat(contact.id), {
+        first_name: this.model.first_name,
         email: this.model.email,
-        password: this.model.password
+        phone: this.model.phone
       }).then(function (response) {
         var data = response.data;
         _this2.isLoading = false;
@@ -2449,8 +2448,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    this.model.name = this.user.name;
-    this.model.email = this.user.email;
+    this.model.first_name = this.contact.first_name;
+    this.model.email = this.contact.email;
+    this.model.phone = this.contact.phone;
   }
 });
 
@@ -41328,7 +41328,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "form-horizontal form-material" }, [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "col-md-12" }, [_vm._v("Full Name")]),
+          _c("label", { staticClass: "col-md-12" }, [_vm._v("First Name")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("input", {
@@ -41336,19 +41336,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.model.name,
-                  expression: "model.name"
+                  value: _vm.model.first_name,
+                  expression: "model.first_name"
                 }
               ],
               staticClass: "form-control form-control-line",
               attrs: { type: "text", placeholder: "Johnathan Doe" },
-              domProps: { value: _vm.model.name },
+              domProps: { value: _vm.model.first_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.model, "name", $event.target.value)
+                  _vm.$set(_vm.model, "first_name", $event.target.value)
                 }
               }
             })
@@ -41376,7 +41376,7 @@ var render = function() {
               attrs: {
                 type: "email",
                 placeholder: "johnathan@admin.com",
-                name: "example-email",
+                first_name: "example-email",
                 id: "example-email"
               },
               domProps: { value: _vm.model.email },
@@ -41393,7 +41393,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "col-md-12" }, [_vm._v("Password")]),
+          _c("label", { staticClass: "col-md-12" }, [_vm._v("Phone")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("input", {
@@ -41401,19 +41401,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.model.password,
-                  expression: "model.password"
+                  value: _vm.model.phone,
+                  expression: "model.phone"
                 }
               ],
               staticClass: "form-control form-control-line",
-              attrs: { type: "password", value: "password" },
-              domProps: { value: _vm.model.password },
+              attrs: { type: "text", value: "phone" },
+              domProps: { value: _vm.model.phone },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.model, "password", $event.target.value)
+                  _vm.$set(_vm.model, "phone", $event.target.value)
                 }
               }
             })
@@ -41428,7 +41428,7 @@ var render = function() {
                 staticClass: "btn btn-success",
                 on: { click: _vm.handleSubmit }
               },
-              [_vm._v("\n                    Update Profile\n                ")]
+              [_vm._v("\n                    Create contact\n                ")]
             )
           ])
         ])
@@ -41479,7 +41479,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "form-horizontal form-material" }, [
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "col-md-12" }, [_vm._v("Full Name")]),
+          _c("label", { staticClass: "col-md-12" }, [_vm._v("First Name")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("input", {
@@ -41487,19 +41487,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.model.name,
-                  expression: "model.name"
+                  value: _vm.model.first_name,
+                  expression: "model.first_name"
                 }
               ],
               staticClass: "form-control form-control-line",
               attrs: { type: "text", placeholder: "Johnathan Doe" },
-              domProps: { value: _vm.model.name },
+              domProps: { value: _vm.model.first_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.model, "name", $event.target.value)
+                  _vm.$set(_vm.model, "first_name", $event.target.value)
                 }
               }
             })
@@ -41527,7 +41527,7 @@ var render = function() {
               attrs: {
                 type: "email",
                 placeholder: "johnathan@admin.com",
-                name: "example-email",
+                first_name: "example-email",
                 id: "example-email"
               },
               domProps: { value: _vm.model.email },
@@ -41544,7 +41544,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("label", { staticClass: "col-md-12" }, [_vm._v("Password")]),
+          _c("label", { staticClass: "col-md-12" }, [_vm._v("Phone")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("input", {
@@ -41552,19 +41552,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.model.password,
-                  expression: "model.password"
+                  value: _vm.model.phone,
+                  expression: "model.phone"
                 }
               ],
               staticClass: "form-control form-control-line",
-              attrs: { type: "password", value: "password" },
-              domProps: { value: _vm.model.password },
+              attrs: { type: "text", value: "phone" },
+              domProps: { value: _vm.model.phone },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.model, "password", $event.target.value)
+                  _vm.$set(_vm.model, "phone", $event.target.value)
                 }
               }
             })
@@ -41579,7 +41579,7 @@ var render = function() {
                 staticClass: "btn btn-success",
                 on: { click: _vm.handleSubmit }
               },
-              [_vm._v("\n                    Update Profile\n                ")]
+              [_vm._v("\n                    Update contact\n                ")]
             )
           ])
         ])

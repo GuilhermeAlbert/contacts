@@ -24,6 +24,7 @@
         </div>
     </div>
 </div>
+<create-contact-component></create-contact-component>
 @endsection
 
 @section('javascripts')

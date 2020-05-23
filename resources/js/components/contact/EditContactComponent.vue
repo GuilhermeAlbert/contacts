@@ -8,13 +8,13 @@
         ></loading>
         <div class="form-horizontal form-material">
             <div class="form-group">
-                <label class="col-md-12">Full Name</label>
+                <label class="col-md-12">First Name</label>
                 <div class="col-md-12">
                     <input
                         type="text"
                         placeholder="Johnathan Doe"
                         class="form-control form-control-line"
-                        v-model="model.name"
+                        v-model="model.first_name"
                     />
                 </div>
             </div>
@@ -25,27 +25,27 @@
                         type="email"
                         placeholder="johnathan@admin.com"
                         class="form-control form-control-line"
-                        name="example-email"
+                        first_name="example-email"
                         id="example-email"
                         v-model="model.email"
                     />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-12">Password</label>
+                <label class="col-md-12">Phone</label>
                 <div class="col-md-12">
                     <input
-                        type="password"
-                        value="password"
+                        type="text"
+                        value="phone"
                         class="form-control form-control-line"
-                        v-model="model.password"
+                        v-model="model.phone"
                     />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
                     <button class="btn btn-success" @click="handleSubmit">
-                        Update Profile
+                        Update contact
                     </button>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 import axios from "axios";
 
 export default {
-    props: ["user", "title", "description"],
+    props: ["contact"],
     data() {
         return {
             isLoading: false,
@@ -65,9 +65,9 @@ export default {
             loader: "dots",
             color: "#007bff",
             model: {
-                name: "",
+                first_name: "",
                 email: "",
-                password: ""
+                phone: ""
             }
         };
     },
@@ -81,10 +81,10 @@ export default {
             this.isLoading = true;
 
             axios
-                .patch(`/api/users/${this.user.id}`, {
-                    name: this.model.name,
+                .patch(`/api/contacts/${contact.id}`, {
+                    first_name: this.model.first_name,
                     email: this.model.email,
-                    password: this.model.password
+                    phone: this.model.phone
                 })
                 .then(response => {
                     let data = response.data;
@@ -119,8 +119,9 @@ export default {
         }
     },
     created() {
-        this.model.name = this.user.name;
-        this.model.email = this.user.email;
+        this.model.first_name = this.contact.first_name;
+        this.model.email = this.contact.email;
+        this.model.phone = this.contact.phone;
     }
 };
 </script>
