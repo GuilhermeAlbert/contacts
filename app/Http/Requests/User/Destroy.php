@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests\User;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Utils\HttpStatusCodes;
 
 class Destroy extends FormRequest
 {
@@ -13,7 +17,22 @@ class Destroy extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $contactId = $this->route('user');
+        $user = User::find($contactId);
+
+        $this->merge([
+            "user" => $user
+        ]);
     }
 
     /**
@@ -24,7 +43,31 @@ class Destroy extends FormRequest
     public function rules()
     {
         return [
-            //
+            "user" => ["required", "json"]
         ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            "user.required" => ":attribute not found."
+        ];
+    }
+
+    /**
+     * Verify if has erros and print it
+     *
+     * @return Json
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json($validator->errors()->all(), HttpStatusCodes::BAD_REQUEST)
+        );
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Utils\{HttpStatusCodes, Strings};
+use Illuminate\Support\Facades\Auth;
 
 class Update extends FormRequest
 {
@@ -17,9 +18,10 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        $contact = Contact::find($this->route('contact'));
+        // $contact = Contact::find($this->route('contact'));
+        // return $contact && $this->user()->can('update', $contact);
 
-        return $contact && $this->user()->can('update', $contact);
+        return true;
     }
 
     /**
@@ -42,7 +44,7 @@ class Update extends FormRequest
         $this->merge([
             'phone'   => $this->phone,
             'contact' => $contact,
-            'user_id' => $this->user()->id,
+            'user_id' => Auth::user()->id,
         ]);
     }
 

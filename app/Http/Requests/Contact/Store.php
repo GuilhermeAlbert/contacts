@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Utils\{HttpStatusCodes, Strings};
+use Illuminate\Support\Facades\Auth;
 
 class Store extends FormRequest
 {
@@ -34,7 +35,7 @@ class Store extends FormRequest
 
         $this->merge([
             'phone'   => $this->phone,
-            'user_id' => $this->user()->id,
+            'user_id' => Auth::user()->id,
         ]);
     }
 
