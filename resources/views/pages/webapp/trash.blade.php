@@ -22,7 +22,13 @@
         <p class="text-muted">Here you will see your trashed contacts.</p>
     </div>
 </div>
+
+@if(count($contacts) > 0)
 <list-trashed-contact-component :contacts="{{ $contacts }}"></list-trashed-contact-component>
+@else
+<empty-component title="Nothing to see here" description="Click at the button above to create a new contact." :show-action-button="true" button-url="/contacts/new" button-title="Create contact"> </empty-component>
+@endif
+
 @endsection
 
 @section('javascripts')
