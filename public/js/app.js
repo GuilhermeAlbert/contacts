@@ -2525,10 +2525,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["contacts"],
   data: function data() {
@@ -2675,24 +2671,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["contacts"],
   data: function data() {
@@ -2704,10 +2682,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    edit: function edit(param) {
-      if (param) window.location.href = "/contacts/edit/".concat(param);
-    },
-    sync: function sync(param) {
+    restore: function restore(param) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -41610,138 +41585,124 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    [
-      _c("loading", {
-        attrs: {
-          active: _vm.isLoading,
-          "is-full-page": _vm.fullPage,
-          loader: _vm.loader,
-          color: _vm.color
-        },
-        on: {
-          "update:active": function($event) {
-            _vm.isLoading = $event
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm.contacts
-        ? _c(
-            "div",
-            _vm._l(_vm.contacts, function(contact) {
-              return _c(
-                "div",
-                {
-                  key: contact.id,
-                  staticClass: "col-md-4 col-sm-4 col-xs-4 m-b-40"
-                },
-                [
+  return _vm.contacts
+    ? _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c("loading", {
+            attrs: {
+              active: _vm.isLoading,
+              "is-full-page": _vm.fullPage,
+              loader: _vm.loader,
+              color: _vm.color
+            },
+            on: {
+              "update:active": function($event) {
+                _vm.isLoading = $event
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.contacts, function(contact) {
+            return _c(
+              "div",
+              { key: contact.id, staticClass: "col-lg-4 col-sm-6 col-xs-12" },
+              [
+                _c("div", { staticClass: "white-box analytics-info" }, [
                   _c("h3", { staticClass: "box-title" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.first_name) +
-                        "\n            "
-                    )
+                    _vm._v(_vm._s(contact.first_name))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.email) +
-                        "\n            "
-                    )
+                  _c("p", { staticClass: "list-inline two-part" }, [
+                    _c("strong", [_vm._v("Email:")]),
+                    _vm._v(" " + _vm._s(contact.email) + "\n            ")
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.phone) +
-                        "\n            "
-                    )
+                  _c("p", { staticClass: "list-inline two-part" }, [
+                    _c("strong", [_vm._v("Phone:")]),
+                    _vm._v(" " + _vm._s(contact.phone) + "\n            ")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-success waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit(contact.id)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-pencil fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  ),
+                  _vm._m(0, true),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-info m-l-5 waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.sync(contact.id)
+                  _c("div", { staticClass: "list-inline action-buttons" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success waves-effect waves-light",
+                        on: {
+                          click: function($event) {
+                            return _vm.edit(contact.id)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-refresh fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-danger m-l-5 waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.destroy(contact.id)
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-pencil fa-fw",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v("\n                    Edit\n                ")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-info m-l-5 waves-effect waves-light",
+                        on: {
+                          click: function($event) {
+                            return _vm.sync(contact.id)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-trash-o fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        : _c(
-            "div",
-            [
-              _c("empty-component", {
-                attrs: {
-                  title: "Nothing to see here",
-                  description:
-                    "Click at the button above to create a new contact.",
-                  "show-action-button": true,
-                  "button-url": "/contacts/new",
-                  "button-title": "Create contact"
-                }
-              })
-            ],
-            1
-          )
-    ],
-    1
-  )
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-refresh fa-fw",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v("\n                    Sync\n                ")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-danger m-l-5 waves-effect waves-light",
+                        on: {
+                          click: function($event) {
+                            return _vm.destroy(contact.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-trash-o fa-fw",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v("\n                    Delete\n                ")
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            )
+          })
+        ],
+        2
+      )
+    : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "list-inline two-part" }, [_c("hr")])
+  }
+]
 render._withStripped = true
 
 
@@ -41763,138 +41724,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row" },
-    [
-      _c("loading", {
-        attrs: {
-          active: _vm.isLoading,
-          "is-full-page": _vm.fullPage,
-          loader: _vm.loader,
-          color: _vm.color
-        },
-        on: {
-          "update:active": function($event) {
-            _vm.isLoading = $event
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm.contacts
-        ? _c(
-            "div",
-            _vm._l(_vm.contacts, function(contact) {
-              return _c(
-                "div",
-                {
-                  key: contact.id,
-                  staticClass: "col-md-4 col-sm-4 col-xs-4 m-b-40"
-                },
-                [
+  return _vm.contacts
+    ? _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _c("loading", {
+            attrs: {
+              active: _vm.isLoading,
+              "is-full-page": _vm.fullPage,
+              loader: _vm.loader,
+              color: _vm.color
+            },
+            on: {
+              "update:active": function($event) {
+                _vm.isLoading = $event
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.contacts, function(contact) {
+            return _c(
+              "div",
+              { key: contact.id, staticClass: "col-lg-4 col-sm-6 col-xs-12" },
+              [
+                _c("div", { staticClass: "white-box analytics-info" }, [
                   _c("h3", { staticClass: "box-title" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.first_name) +
-                        "\n            "
-                    )
+                    _vm._v(_vm._s(contact.first_name))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.email) +
-                        "\n            "
-                    )
+                  _c("p", { staticClass: "list-inline two-part" }, [
+                    _c("strong", [_vm._v("Email:")]),
+                    _vm._v(" " + _vm._s(contact.email) + "\n            ")
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(contact.phone) +
-                        "\n            "
-                    )
+                  _c("p", { staticClass: "list-inline two-part" }, [
+                    _c("strong", [_vm._v("Phone:")]),
+                    _vm._v(" " + _vm._s(contact.phone) + "\n            ")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-success waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.edit(contact.id)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-pencil fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  ),
+                  _vm._m(0, true),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-info m-l-5 waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.sync(contact.id)
+                  _c("div", { staticClass: "list-inline action-buttons" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-info m-l-5 waves-effect waves-light",
+                        on: {
+                          click: function($event) {
+                            return _vm.restore(contact.id)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-refresh fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn-danger m-l-5 waves-effect waves-light",
-                      on: {
-                        click: function($event) {
-                          return _vm.destroy(contact.id)
-                        }
-                      }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fa fa-trash-o fa-fw",
-                        attrs: { "aria-hidden": "true" }
-                      })
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        : _c(
-            "div",
-            [
-              _c("empty-component", {
-                attrs: {
-                  title: "Nothing to see here",
-                  description:
-                    "Click at the button above to create a new contact.",
-                  "show-action-button": true,
-                  "button-url": "/contacts/new",
-                  "button-title": "Create contact"
-                }
-              })
-            ],
-            1
-          )
-    ],
-    1
-  )
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-reply fa-fw",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v(
+                          "\n                    Restore\n                "
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            )
+          })
+        ],
+        2
+      )
+    : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "list-inline two-part" }, [_c("hr")])
+  }
+]
 render._withStripped = true
 
 

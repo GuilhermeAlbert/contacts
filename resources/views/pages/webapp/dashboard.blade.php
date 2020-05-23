@@ -20,9 +20,14 @@
             <h3 class="box-title">Total contacts</h3>
             <ul class="list-inline two-part">
                 <li>
-                    <div id="sparklinedash"></div>
+                    <div id="sparklinedash">
+                        <img src="{{ asset('website/images/contacts.svg') }}" alt="Contacts" width="32px">
+                    </div>
                 </li>
-                <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">659</span></li>
+                <li class="text-right">
+                    <i class="fa fa-caret-up text-success"></i>
+                    <span class="counter text-success">{{ $user_contacts_count }}</span>
+                </li>
             </ul>
         </div>
     </div>
@@ -31,20 +36,29 @@
             <h3 class="box-title">Total contacts today</h3>
             <ul class="list-inline two-part">
                 <li>
-                    <div id="sparklinedash2"></div>
+                    <div id="sparklinedash2">
+                        <img src="{{ asset('website/images/agenda.svg') }}" alt="Contacts" width="32px"></div>
                 </li>
-                <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">869</span></li>
+                <li class="text-right">
+                    <i class="fa fa-caret-up text-purple"></i>
+                    <span class="counter text-purple">{{ $user_contacts_today_count }}</span>
+                </li>
             </ul>
         </div>
     </div>
     <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="white-box analytics-info">
-            <h3 class="box-title">Total contacts this month</h3>
+            <h3 class="box-title">Total trashed contacts</h3>
             <ul class="list-inline two-part">
                 <li>
-                    <div id="sparklinedash3"></div>
+                    <div id="sparklinedash3">
+                        <img src="{{ asset('website/images/delete.svg') }}" alt="Contacts" width="32px">
+                    </div>
                 </li>
-                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">911</span></li>
+                <li class="text-right">
+                    <i class="fa fa-caret-up text-danger"></i>
+                    <span class="counter text-danger">{{ $user_trashed_contacts_count }}</span>
+                </li>
             </ul>
         </div>
     </div>

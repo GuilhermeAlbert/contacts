@@ -1,55 +1,51 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="contacts">
         <loading
             :active.sync="isLoading"
             :is-full-page="fullPage"
             :loader="loader"
             :color="color"
         ></loading>
-
-        <div v-if="contacts">
-            <div
-                class="col-md-4 col-sm-4 col-xs-4 m-b-40"
-                v-for="contact in contacts"
-                :key="contact.id"
-            >
-                <h3 class="box-title">
-                    {{ contact.first_name }}
-                </h3>
-                <p class="text-muted">
-                    {{ contact.email }}
+        <div
+            class="col-lg-4 col-sm-6 col-xs-12"
+            v-for="contact in contacts"
+            :key="contact.id"
+        >
+            <div class="white-box analytics-info">
+                <h3 class="box-title">{{ contact.first_name }}</h3>
+                <p class="list-inline two-part">
+                    <strong>Email:</strong> {{ contact.email }}
                 </p>
-                <p class="text-muted">
-                    {{ contact.phone }}
+                <p class="list-inline two-part">
+                    <strong>Phone:</strong> {{ contact.phone }}
                 </p>
-                <button
-                    class="btn-success waves-effect waves-light"
-                    @click="edit(contact.id)"
-                >
-                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                </button>
-                <button
-                    class="btn-info m-l-5 waves-effect waves-light"
-                    @click="sync(contact.id)"
-                >
-                    <i class="fa fa-refresh fa-fw" aria-hidden="true"></i>
-                </button>
-                <button
-                    class="btn-danger m-l-5 waves-effect waves-light"
-                    @click="destroy(contact.id)"
-                >
-                    <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>
-                </button>
+                <div class="list-inline two-part">
+                    <hr />
+                </div>
+                <div class="list-inline action-buttons">
+                    <button
+                        class="btn btn-success waves-effect waves-light"
+                        @click="edit(contact.id)"
+                    >
+                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                        Edit
+                    </button>
+                    <button
+                        class="btn btn-info m-l-5 waves-effect waves-light"
+                        @click="sync(contact.id)"
+                    >
+                        <i class="fa fa-refresh fa-fw" aria-hidden="true"></i>
+                        Sync
+                    </button>
+                    <button
+                        class="btn btn-danger m-l-5 waves-effect waves-light"
+                        @click="destroy(contact.id)"
+                    >
+                        <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>
+                        Delete
+                    </button>
+                </div>
             </div>
-        </div>
-        <div v-else>
-            <empty-component
-                title="Nothing to see here"
-                description="Click at the button above to create a new contact."
-                :show-action-button="true"
-                button-url="/contacts/new"
-                button-title="Create contact"
-            ></empty-component>
         </div>
     </div>
 </template>

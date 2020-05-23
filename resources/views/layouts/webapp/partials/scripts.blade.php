@@ -9,5 +9,5 @@
 <!--Wave Effects -->
 <script src="{{ asset('webapp/js/waves.js') }}"></script>
 <!-- Custom Theme JavaScript -->
-<script src="{{ asset('webapp/js/custom.min.js') }}"></script>
+<!-- <script src="{{ asset('webapp/js/custom.min.js') }}"></script> -->
 <script src="{{ elixir('js/app.js') }}"></script>
