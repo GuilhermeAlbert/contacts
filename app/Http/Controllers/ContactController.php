@@ -13,6 +13,7 @@ use App\Http\Requests\Contact\{
 };
 use App\Http\Resources\{DefaultErrorResource, DefaultResource};
 use App\Utils\HttpStatusCodes;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -35,7 +36,10 @@ class ContactController extends Controller
      */
     public function list(Request $request)
     {
-        return view('pages.webapp.contacts.list', []);
+        $userId = Auth::user()->id;
+        return view('pages.webapp.contacts.list', [
+            'contacts' => $this->model->allByUser($userId)
+        ]);
     }
 
     /**

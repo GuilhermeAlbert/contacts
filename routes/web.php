@@ -23,6 +23,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', 'DashboardController@list')->name('dashboard');
     Route::get('/contacts', 'ContactController@list')->name('contacts');
+    Route::get('/contacts/edit/{contact_id}', 'ContactController@edit')->name('edit_contact');
+    Route::get('/contacts/new', 'ContactController@create')->name('create_contact');
     Route::get('/profile', 'UserController@list')->name('profile');
     Route::get('/trash', 'TrashController@list')->name('trash');
 });

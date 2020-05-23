@@ -39,7 +39,8 @@ class CacheClear extends Command
     public function handle()
     {
         // Remove o conteúdo da pasta de cache
-        system('rm -r bootstrap/cache/*');
+        // system('rm -r bootstrap/cache/*');
+        Artisan::call('optimize:clear');
         $this->info('Folder bootstrap/cache/ was cleaned!');
         $this->info('====================================');
 

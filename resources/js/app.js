@@ -12,7 +12,9 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
+import { VuejsDatatableFactory } from "vuejs-datatable";
 
+Vue.use(VuejsDatatableFactory);
 Vue.use(Loading);
 Vue.use(VueToast);
 Vue.component("loading", Loading);
@@ -51,6 +53,31 @@ Vue.component(
 Vue.component(
     "profile-component",
     require("./components/ProfileComponent.vue").default
+);
+
+Vue.component(
+    "list-contact-component",
+    require("./components/contact/ListContactComponent.vue").default
+);
+
+Vue.component(
+    "edit-contact-component",
+    require("./components/contact/EditContactComponent.vue").default
+);
+
+Vue.component(
+    "create-contact-component",
+    require("./components/contact/CreateContactComponent.vue").default
+);
+
+Vue.component(
+    "list-trashed-contact-component",
+    require("./components/contact/ListTrashedContactComponent.vue").default
+);
+
+Vue.component(
+    "empty-component",
+    require("./components/EmptyComponent.vue").default
 );
 
 /**
