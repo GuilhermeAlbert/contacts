@@ -81,7 +81,7 @@ export default {
             this.isLoading = true;
 
             axios
-                .patch(`/api/contacts/${contact.id}`, {
+                .patch(`/api/contacts/${this.contact.id}`, {
                     first_name: this.model.first_name,
                     email: this.model.email,
                     phone: this.model.phone
@@ -92,7 +92,6 @@ export default {
                     this.showSuccessToast();
                 })
                 .catch(error => {
-                    // Show error toast message
                     this.showErrorToast();
 
                     this.isLoading = false;

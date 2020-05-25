@@ -69,10 +69,8 @@ export default {
             this.isLoading = true;
 
             await axios
-                .patch(`/api/contacts/${this.user.id}`, {
-                    name: this.model.name,
-                    email: this.model.email,
-                    password: this.model.password
+                .patch(`/api/contacts/${param}`, {
+                    //
                 })
                 .then(response => {
                     let data = response.data;
@@ -80,7 +78,6 @@ export default {
                     this.showSuccessToast();
                 })
                 .catch(error => {
-                    // Show error toast message
                     this.showErrorToast();
 
                     this.isLoading = false;
@@ -91,18 +88,15 @@ export default {
             this.isLoading = true;
 
             await axios
-                .patch(`/api/contacts/${this.user.id}`, {
-                    name: this.model.name,
-                    email: this.model.email,
-                    password: this.model.password
+                .delete(`/api/contacts/${param}`, {
+                    //
                 })
                 .then(response => {
                     let data = response.data;
                     this.isLoading = false;
-                    this.showSuccessToast();
+                    window.location.reload();
                 })
                 .catch(error => {
-                    // Show error toast message
                     this.showErrorToast();
 
                     this.isLoading = false;

@@ -57,7 +57,9 @@
 import axios from "axios";
 
 export default {
-    props: ["user", "title", "description"],
+    props: [
+        //
+    ],
     data() {
         return {
             isLoading: false,

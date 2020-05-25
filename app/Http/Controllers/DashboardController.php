@@ -26,7 +26,8 @@ class DashboardController extends Controller
      */
     public function list(Request $request)
     {
-        $userId = $request->user()->id;
+        $user = $request->user();
+        $userId = $user->id;
 
         return view('pages.webapp.dashboard', [
             "user_contacts_count"         => $this->model->allUserContactsCount($userId),

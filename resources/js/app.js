@@ -12,9 +12,7 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
-import { VuejsDatatableFactory } from "vuejs-datatable";
 
-Vue.use(VuejsDatatableFactory);
 Vue.use(Loading);
 Vue.use(VueToast);
 Vue.component("loading", Loading);

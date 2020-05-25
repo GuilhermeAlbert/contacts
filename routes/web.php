@@ -18,6 +18,9 @@ Route::get('/sign-in', 'WebsiteController@signIn')->name('sign-in');
 Route::get('/sign-up', 'WebsiteController@signUp')->name('sign-up');
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
