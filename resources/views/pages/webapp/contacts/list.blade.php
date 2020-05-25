@@ -27,14 +27,16 @@
 <div class="row">
     <div class="white-box">
         <h3 class="box-title">Contacts</h3>
-        <p class="text-muted">Here you will see your contacts.</p>
+        <p class="text-muted">Here you will see your contacts. <a href="{{ route('import_contacts') }}">You can import contacts clicking here.</a></p>
     </div>
 </div>
+
 @if(count($contacts) > 0)
 <list-contact-component :contacts="{{ $contacts }}"></list-contact-component>
 @else
 <empty-component title="Nothing to see here" description="Click at the button above to create a new contact." :show-action-button="true" button-url="/contacts/new" button-title="Create contact"> </empty-component>
 @endif
+
 @endsection
 
 @section('javascripts')
