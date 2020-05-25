@@ -17,10 +17,18 @@ use Illuminate\Support\Facades\Route;
  * Rotas com middleware
  */
 Route::group(['middleware' => ['auth:api']], function () {
+    // Auth routes
     Route::get('auth/logout', 'AuthController@logout');
     Route::get('auth/user', 'AuthController@user');
 
+    // Application API routes
     Route::resource('users', 'UserController');
+
+    Route::prefix('contacts')->group(function () {
+        Route::post('contacts/trash/restore', 'TrashController@restore');
+        Route::delete('contacts/trash/empty/', 'TrashController@empty');
+    });
+
     Route::resource('contacts', 'ContactController');
 });
 
@@ -28,6 +36,7 @@ Route::group(['middleware' => ['auth:api']], function () {
  * Routes without middleware
  */
 Route::group([], function () {
+    // Auth routes
     Route::post('auth/login', 'AuthController@login');
     Route::post('auth/signup', 'AuthController@signup');
 });
