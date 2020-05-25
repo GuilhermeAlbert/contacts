@@ -30,14 +30,4 @@ class ContactRepository extends BaseRepository implements ContactInterface
     {
         return $this->model->where('user_id', $userId)->orderBy('first_name')->get();
     }
-
-    /**
-     * Get all contacts by user
-     * @param int $userId
-     * @return Collection
-     */
-    public function allTrashedByUser($userId)
-    {
-        return $this->model->onlyTrashed()->where('user_id', $userId)->orderBy('first_name')->get();
-    }
 }

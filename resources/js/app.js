@@ -12,7 +12,10 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-sugar.css";
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
+Vue.use(VueSweetalert2);
 Vue.use(Loading);
 Vue.use(VueToast);
 Vue.component("loading", Loading);
@@ -71,6 +74,11 @@ Vue.component(
 Vue.component(
     "list-trashed-contact-component",
     require("./components/contact/ListTrashedContactComponent.vue").default
+);
+
+Vue.component(
+    "empty-trash-component",
+    require("./components/contact/EmptyTrashComponent.vue").default
 );
 
 Vue.component(

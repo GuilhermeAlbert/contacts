@@ -38,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Contact relationship
+     */
+    public function contacts()
+    {
+        return $this->hasMany('App\Contact', 'user_id', 'id');
+    }
 }

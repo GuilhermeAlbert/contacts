@@ -48,22 +48,19 @@ export default {
         };
     },
     methods: {
-        async restore(param) {
+        restore(param) {
             this.isLoading = true;
 
-            await axios
-                .patch(`/api/contacts/${this.user.id}`, {
-                    name: this.model.name,
-                    email: this.model.email,
-                    password: this.model.password
+            axios
+                .patch("/api/contacts/trash/restore", {
+                    contact_id: param
                 })
                 .then(response => {
                     let data = response.data;
                     this.isLoading = false;
-                    this.showSuccessToast();
+                    window.location.href = "/contacts";
                 })
                 .catch(error => {
-                    // Show error toast message
                     this.showErrorToast();
 
                     this.isLoading = false;

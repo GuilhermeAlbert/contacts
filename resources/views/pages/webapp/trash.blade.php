@@ -7,10 +7,9 @@
     </div>
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 
-        <a href="#" class="btn btn-danger pull-right m-l-20 waves-effect waves-light">
-            <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
-            Empty trash
-        </a>
+        @if(count($contacts) > 0)
+        <empty-trash-component></empty-trash-component>
+        @endif
 
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

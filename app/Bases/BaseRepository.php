@@ -67,4 +67,27 @@ abstract class BaseRepository implements BaseInterface
     {
         return $object->delete();
     }
+
+    /**
+     * @param Model $object
+     * @return mixed
+     */
+    public function restore(Model $object)
+    {
+        $object->restore();
+
+        if ($object)
+            return $object;
+        else
+            return null;
+    }
+
+    /**
+     * @param Model $object
+     * @return mixed
+     */
+    public function forceDelete(Model $object)
+    {
+        return $object->forceDelete();
+    }
 }

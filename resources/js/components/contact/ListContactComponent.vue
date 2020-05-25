@@ -39,7 +39,7 @@
                     </button>
                     <button
                         class="btn btn-danger m-l-5 waves-effect waves-light"
-                        @click="destroy(contact.id)"
+                        @click="handleDeleteAlertMessage(contact.id)"
                     >
                         <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>
                         Delete
@@ -83,6 +83,26 @@ export default {
                     this.isLoading = false;
                     console.log(error);
                 });
+        },
+        handleDeleteAlertMessage(param) {
+            this.$swal({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then(result => {
+                if (result.value) {
+                    this.destroy(param);
+                    this.$swal(
+                        "Deleted!",
+                        "Your contact has been deleted.",
+                        "success"
+                    );
+                }
+            });
         },
         async destroy(param) {
             this.isLoading = true;

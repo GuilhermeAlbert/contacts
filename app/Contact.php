@@ -55,4 +55,12 @@ class Contact extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * User relationship
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
 }
