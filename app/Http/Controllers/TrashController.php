@@ -40,7 +40,7 @@ class TrashController extends Controller
 
     /**
      * Destroy all trashed contacts permanently
-     * @api {GET} /api/contacts/trash/empty
+     * @api {DELETE} /api/contacts/trash/empty
      * @param Index $request
      * @return Resource json
      */
@@ -59,7 +59,7 @@ class TrashController extends Controller
 
     /**
      * Restore a specific trashed contact
-     * @api {GET} /api/contacts/trash/restore
+     * @api {PATCH} /api/contacts/trash/restore
      * @param Restore $request
      * @return Resource json
      */

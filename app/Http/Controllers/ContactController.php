@@ -120,7 +120,7 @@ class ContactController extends Controller
 
     /**
      * Update a specific contact
-     * @api {GET} /api/contacts/{contact}
+     * @api {PATCH} /api/contacts/{contact}
      * @param Update $request
      * @return Resource json
      */
@@ -138,7 +138,7 @@ class ContactController extends Controller
 
     /**
      * Delete a specific contact
-     * @api {GET} /api/contacts/{contact}
+     * @api {DELETE} /api/contacts/{contact}
      * @param Destroy $request
      * @return Resource json
      */

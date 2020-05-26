@@ -77,6 +77,11 @@ Vue.component(
 );
 
 Vue.component(
+    "import-contacts-component",
+    require("./components/contact/ImportContactsComponent.vue").default
+);
+
+Vue.component(
     "empty-trash-component",
     require("./components/contact/EmptyTrashComponent.vue").default
 );

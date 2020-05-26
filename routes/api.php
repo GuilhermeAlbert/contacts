@@ -24,9 +24,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     // Application API routes
     Route::resource('users', 'UserController');
 
-    Route::prefix('contacts/trash')->group(function () {
-        Route::patch('restore', 'TrashController@restore');
-        Route::delete('empty', 'TrashController@permanentlyDelete');
+    Route::prefix('contacts')->group(function () {
+        Route::post('/import', 'ImportContactController@import');
+        Route::patch('/trash/restore', 'TrashController@restore');
+        Route::delete('/trash/empty', 'TrashController@permanentlyDelete');
     });
 
     Route::resource('contacts', 'ContactController');
