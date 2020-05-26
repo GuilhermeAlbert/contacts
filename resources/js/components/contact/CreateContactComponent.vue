@@ -90,6 +90,8 @@ export default {
                 })
                 .then(response => {
                     let data = response.data;
+                    console.log(data);
+
                     this.isLoading = false;
                     window.location.href = "/contacts";
                     this.showSuccessToast();
