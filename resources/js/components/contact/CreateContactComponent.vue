@@ -74,15 +74,15 @@ export default {
         };
     },
     methods: {
-        async handleSubmit() {
-            await this.update();
+        handleSubmit() {
+            this.update();
         },
-        update() {
+        async update() {
             console.log("Component is updating.");
 
             this.isLoading = true;
 
-            axios
+            await axios
                 .post(`/api/contacts/`, {
                     first_name: this.model.first_name,
                     email: this.model.email,
