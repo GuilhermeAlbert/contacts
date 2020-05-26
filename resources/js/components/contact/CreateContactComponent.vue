@@ -95,14 +95,11 @@ export default {
                 })
                 .then(response => {
                     let data = response.data;
-                    console.log(data);
-
                     this.isLoading = false;
-                    // window.location.href = "/contacts";
                     this.showSuccessToast();
+                    window.location.href = "/contacts";
                 })
                 .catch(error => {
-                    // Show error toast message
                     this.showErrorToast();
 
                     this.isLoading = false;
