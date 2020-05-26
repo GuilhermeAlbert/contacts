@@ -82,11 +82,16 @@ export default {
 
             this.isLoading = true;
 
+            var formData = new FormData();
+            formData.append("first_name", this.model.first_name);
+            formData.append("email", this.model.email);
+            formData.append("phone", this.model.phone);
+
             await axios
-                .post(`/api/contacts/`, {
-                    first_name: this.model.first_name,
-                    email: this.model.email,
-                    phone: this.model.phone
+                .post("/api/contacts", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
                 })
                 .then(response => {
                     let data = response.data;
