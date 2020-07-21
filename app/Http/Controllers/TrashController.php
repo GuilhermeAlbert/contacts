@@ -53,7 +53,7 @@ class TrashController extends Controller
 
             return new DefaultResource(['message' => 'The trash was permanently cleaned.']);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -71,7 +71,7 @@ class TrashController extends Controller
 
             return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 }

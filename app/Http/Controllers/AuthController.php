@@ -44,7 +44,7 @@ class AuthController extends Controller
             $object = $this->model->create($request->inputs);
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::CREATED);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -86,7 +86,7 @@ class AuthController extends Controller
 
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::OK);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -102,7 +102,7 @@ class AuthController extends Controller
             $object = ['message' => 'Successfully logged out'];
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::OK);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -117,7 +117,7 @@ class AuthController extends Controller
             $object = $request->user();
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::OK);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 }

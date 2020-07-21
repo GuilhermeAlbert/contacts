@@ -78,7 +78,7 @@ class ContactController extends Controller
 
             return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -96,7 +96,7 @@ class ContactController extends Controller
 
             return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -114,7 +114,7 @@ class ContactController extends Controller
 
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::CREATED);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -132,7 +132,7 @@ class ContactController extends Controller
 
             return new DefaultResource($object);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 
@@ -150,7 +150,7 @@ class ContactController extends Controller
 
             return (new DefaultResource([]))->response()->setStatusCode(HttpStatusCodes::NO_CONTENT);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 }

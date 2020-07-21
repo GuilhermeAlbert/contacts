@@ -48,7 +48,7 @@ class ImportContactController extends Controller
 
             return (new DefaultResource($object))->response()->setStatusCode(HttpStatusCodes::OK);
         } catch (\Exception $error) {
-            return new DefaultErrorResource(['errors' => $error->getMessage()]);
+            throw $error;
         }
     }
 }

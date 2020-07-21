@@ -10,10 +10,14 @@
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             Create
         </a>
+
+        @if(count($contacts) > 0)
         <a href="#" class="btn btn-info pull-right m-l-20 waves-effect waves-light">
             <i class="fa fa-refresh fa-fw" aria-hidden="true"></i>
             Refresh
         </a>
+        @endif
+
         <ol class="breadcrumb">
             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="active">Contacts</li>
