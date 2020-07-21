@@ -39,35 +39,38 @@ class CacheClear extends Command
     public function handle()
     {
         // Remove o conteúdo da pasta de cache
-        // system('rm -r bootstrap/cache/*');
         Artisan::call('optimize:clear');
-        $this->info('Folder bootstrap/cache/ was cleaned!');
-        $this->info('====================================');
+        $this->info('- Optimize clear was executed.');
+
+        // system('rm -r bootstrap/cache/*');
+        // $this->info('- bootstrap/cache/ folder was cleaned.');
 
         Artisan::call('config:clear');
-        $this->info('Configuration cache cleared!');
-        $this->info('====================================');
+        $this->info('- Configuration clear was executed.');
 
         Artisan::call('config:cache');
-        $this->info('Configuration cache cleared!');
-        $this->info('====================================');
+        $this->info('- Configuration was uncached.');
 
         Artisan::call('cache:clear');
-        $this->info('Configuration cache cleared!');
-        $this->info('====================================');
+        $this->info('- Configuration cache was cleared');
 
         Artisan::call('view:clear');
-        $this->info('Configuration view cleared!');
-        $this->info('====================================');
+        $this->info('- Configuration view was cleared.');
 
         Artisan::call('route:clear');
-        $this->info('Configuration route cleared!');
+        $this->info('- Configuration route was cleared.');
+
         $this->info('====================================');
+        $this->info('Executing dump-autoload...');
 
         system('composer dump-autoload');
-        $this->info('Composer autoload was executed!');
-        $this->info('====================================');
+        $this->info('- Dump autoload was composed.');
 
-        $this->info('All done.');
+        // exec('rm ' . storage_path('logs/*.log'));
+        // $this->info('- Logs folder was cleaned.');
+
+        $this->info('====================================');
+        $this->info('Cache commands was executed.');
+        $this->info('Project data was configured.');
     }
 }
