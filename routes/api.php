@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/import', 'ImportContactController@import');
         Route::patch('/trash/restore', 'TrashController@restore');
         Route::delete('/trash/empty', 'TrashController@permanentlyDelete');
+        Route::post('/refresh', 'RefreshContactController@refresh');
     });
 
     Route::resource('contacts', 'ContactController');
